@@ -12,7 +12,7 @@ class Mee6Level(commands.Cog):
         self.api = API(self.bot.config['guild_id'])
         self.coll = bot.api.get_plugin_partition(self)
 
-    @checks.thread.only()
+    @checks.thread_only()
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @commands.command()
     async def level(self, ctx):
