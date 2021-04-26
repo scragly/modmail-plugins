@@ -17,7 +17,7 @@ class Mee6Level(commands.Cog):
     @commands.command()
     async def level(self, ctx):
         level = await self.api.levels.get_user_level(ctx.thread.id)
-        if level:
+        if level is not None:
             embed = Embed(
                 colour=ctx.bot.main_color,
                 description=f"MEE6 Level: {level}"
