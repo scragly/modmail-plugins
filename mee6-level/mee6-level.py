@@ -15,7 +15,7 @@ class Mee6Level(commands.Cog):
     @checks.thread.only()
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @commands.command()
-    def level(self, ctx):
+    async def level(self, ctx):
         level = await self.api.levels.get_user_level(ctx.thread.id)
         if level:
             embed = Embed(
