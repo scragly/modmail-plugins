@@ -38,7 +38,7 @@ class Mee6Level(commands.Cog):
         config = await self.db.find_one({"_id": "mee6-level"})
         if config is None:
             return
-        return config.get("level-message")
+        return config.get("level-msg")
 
     @checks.thread_only()
     @checks.has_permissions(PermissionLevel.SUPPORTER)
