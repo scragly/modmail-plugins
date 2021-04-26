@@ -16,7 +16,7 @@ class Mee6Level(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @commands.command()
     async def level(self, ctx):
-        level = await self.api.levels.get_user_level(ctx.thread.id)
+        level = await self.api.levels.get_user_level(ctx.thread.id, dont_use_cache=True)
         if level is not None:
             embed = Embed(
                 colour=ctx.bot.main_color,
