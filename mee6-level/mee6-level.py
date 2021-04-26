@@ -14,11 +14,13 @@ class Mee6Level(commands.Cog):
 
     @checks.has_permissions(PermissionLevel.ADMIN)
     @commands.command()
-    async def set_level_msg(self, ctx, *, message):
+    async def set_level_msg(self, ctx, *, message=None):
         """
         Sets a message to add to level responses.
 
         Can be useful as a quick reference for role/perk level requirements.
+
+        To remove any existing message, run the command without any arguments.
         """
         await self.db.find_one_and_update(
             {"_id": "mee6-level"},
