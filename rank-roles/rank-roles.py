@@ -37,6 +37,7 @@ class RankRoles(commands.Cog):
         embed: Embed = msg.embeds[0]
         level = await self.get_level(thread.id)
         embed.add_field(name="Level", value=str(level) if level else "0")
+        await msg.edit(embed=embed)
 
     @checks.thread_only()
     @checks.has_permissions(PermissionLevel.SUPPORTER)
