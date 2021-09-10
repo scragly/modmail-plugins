@@ -32,12 +32,11 @@ class RankRoles(commands.Cog):
         await self.db.find_one_and_update({"_id": self._id}, {"$set": set_values}, upsert=True)
 
     @commands.Cog.listener()
-    async def on_thread_ready(self, thread):
-        msg: Message = thread.genesis_message
-        embed: Embed = msg.embeds[0]
+    async def on_thread_ready(self, thread, _creator, _category, initial_message):
+        embed: Embed = initial_message.embeds[0]
         level = await self.get_level(thread.id)
         embed.add_field(name="Level", value=str(level) if level else "0")
-        await msg.edit(embed=embed)
+        await initial_message.edit(embed=embed)
 
     @checks.thread_only()
     @checks.has_permissions(PermissionLevel.SUPPORTER)
