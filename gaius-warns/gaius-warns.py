@@ -21,9 +21,9 @@ class GaiusWarning:
         self.user_id: int = int(userid)
         self.mod_id: int = int(modid)
         self.reason: str = reason
-        self.created = pendulum.from_timestamp(int(warndate))
+        self.created = pendulum.from_timestamp(int(warndate[:-3]))
         self.pardoner_id = int(pardonerid) if pardonerid else None
-        self.pardon_date = pendulum.from_timestamp(int(pardondate)) if pardondate else None
+        self.pardon_date = pendulum.from_timestamp(int(pardondate[:-3])) if pardondate else None
 
     @property
     def active(self):
