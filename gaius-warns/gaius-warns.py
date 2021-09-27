@@ -65,7 +65,7 @@ class GaiusWarns(commands.Cog):
         warnings: typing.List[GaiusWarning] = await self.get_warns(thread.id)
         msg = await thread.channel.fetch_message(thread.genesis_message.id)
         embed: Embed = msg.embeds[0]
-        if warnings:
+        if not warnings:
             embed.add_field(name=f"Gaius Warnings", value="No warnings found.")
         else:
             last = warnings[0]
