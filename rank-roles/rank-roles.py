@@ -33,9 +33,9 @@ class RankRoles(commands.Cog):
 
     @commands.Cog.listener()
     async def on_thread_ready(self, thread, _creator, _category, _initial_message):
-        msg: Message = thread.genesis_message
-        embed: Embed = msg.embeds[0]
         level = await self.get_level(thread.id)
+        msg = await thread.channel.fetch_message(thread.genesis_message.id)
+        embed: Embed = msg.embeds[0]
         embed.add_field(name="Level", value=str(level) if level else "0")
         await msg.edit(embed=embed)
 
