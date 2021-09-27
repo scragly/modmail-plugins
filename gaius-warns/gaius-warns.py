@@ -21,9 +21,9 @@ class GaiusWarning:
         self.user_id: int = int(userid)
         self.mod_id: int = int(modid)
         self.reason: str = reason
-        self.created = pendulum.from_timestamp(warndate)
+        self.created = pendulum.from_timestamp(int(warndate))
         self.pardoner_id = int(pardonerid) if pardonerid else None
-        self.pardon_date = pendulum.from_timestamp(pardondate) if pardondate else None
+        self.pardon_date = pendulum.from_timestamp(int(pardondate)) if pardondate else None
 
     @property
     def active(self):
@@ -78,7 +78,8 @@ class GaiusWarns(commands.Cog):
                     f"**Mod:** <@{last.mod_id}>\n"
                     f"**Pardoned:** {last.pardoned_timestamp()} ({last.pardoned_timestamp(relative=True)})\n" if last.pardon_date else ""
                     f"**Reason:** {last.reason}"
-                )
+                ),
+                inline=False,
             )
         await msg.edit(embed=embed)
 
