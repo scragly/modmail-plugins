@@ -69,17 +69,19 @@ class GaiusWarns(commands.Cog):
             embed.add_field(name=f"Gaius Warnings", value="No warnings found.")
         else:
             last = warnings[0]
+            output = [
+                "**Last Warning Received**",
+                f"**ID:** {last.id}",
+                f"**Date:** {last.timestamp()} ({last.timestamp(relative=True)})",
+                f"**Mod:** <@{last.mod_id}>"
+            ]
+            if last.pardon_date:
+                output.append(f"**Pardoned:** {last.pardoned_timestamp()} ({last.pardoned_timestamp(relative=True)})")
+            output.append(f"**Reason:** {last.reason}")
             embed.add_field(
                 name=f"{len(warnings)} Gaius Warnings",
-                value=(
-                    "**Last Warning Received**"
-                    f"**ID:** {last.id}\n"
-                    f"**Date:** {last.timestamp()} ({last.timestamp(relative=True)})\n"
-                    f"**Mod:** <@{last.mod_id}>\n"
-                    f"**Pardoned:** {last.pardoned_timestamp()} ({last.pardoned_timestamp(relative=True)})\n" if last.pardon_date else ""
-                    f"**Reason:** {last.reason}"
-                ),
-                inline=False,
+                value="\n".join(output),
+                inline=False
             )
         await msg.edit(embed=embed)
 
