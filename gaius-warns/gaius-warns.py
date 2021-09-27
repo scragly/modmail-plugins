@@ -1,3 +1,4 @@
+import os
 import typing
 
 import aiohttp
@@ -46,7 +47,7 @@ class GaiusWarns(commands.Cog):
         self.bot = bot
         self.db = bot.api.get_plugin_partition(self)
         self._session: typing.Optional[aiohttp.ClientSession] = None
-        self._apikey: str = bot.config["GAIUS_API_KEY"]
+        self._apikey: str = os.environ["gaius_api_key"]
 
     async def get_warns(self, user_id: int):
         if not self._session or self._session.closed:
