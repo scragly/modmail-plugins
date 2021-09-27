@@ -32,14 +32,14 @@ class GaiusWarning:
 
     def timestamp(self, relative=False):
         if relative:
-            return f"<t:{self.created.int_timestamp}:r>"
+            return f"<t:{self.created.int_timestamp}:R>"
         return f"<t:{self.created.int_timestamp}>"
 
     def pardoned_timestamp(self, relative=False):
         if not self.pardon_date:
             return
         if relative:
-            return f"<t:{self.pardon_date.int_timestamp}:r>"
+            return f"<t:{self.pardon_date.int_timestamp}:R>"
         return f"<t:{self.pardon_date.int_timestamp}>"
 
 
