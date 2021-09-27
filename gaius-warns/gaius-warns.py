@@ -46,7 +46,7 @@ class GaiusWarns(commands.Cog):
         self.bot = bot
         self.db = bot.api.get_plugin_partition(self)
         self._session: typing.Optional[aiohttp.ClientSession] = None
-        self._apikey: str = bot.config["gaius_api_key"]
+        self._apikey: str = bot.config["GAIUS_API_KEY"]
 
     async def get_warns(self, user_id: int):
         if not self._session or self._session.closed:
