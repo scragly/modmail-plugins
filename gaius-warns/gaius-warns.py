@@ -63,8 +63,8 @@ class GaiusWarns(commands.Cog):
 
     @commands.Cog.listener()
     async def on_thread_ready(self, thread, _creator, _category, _initial_message):
+        await asyncio.sleep(10)
         warnings: typing.List[GaiusWarning] = await self.get_warns(thread.id)
-        await asyncio.sleep(2)
         msg = await thread.channel.fetch_message(thread.genesis_message.id)
         embed: Embed = msg.embeds[0]
         if not warnings:
